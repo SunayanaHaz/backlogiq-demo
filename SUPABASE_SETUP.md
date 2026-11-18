@@ -13,11 +13,10 @@ Project inserts send `owner_id`, `name`, and `goal`. Request inserts send only `
 
 ## First browser setup
 
-1. Open `cloud.html` in a browser with empty local storage.
-2. The connection panel must appear first, with fields for the Supabase Project URL and public publishable/anon key.
-3. The browser stores only the public URL/key in `localStorage` under `backlogiq.supabase.config.v1`.
-4. After connecting, sign in or create an account.
-5. Use **Change connection settings** to edit or reselect the connection later. Use **Forget saved connection** to remove public settings and the saved Auth session.
+1. Open `cloud.html` in a browser with empty local storage. The connection form should appear.
+2. Enter the Supabase Project URL and public publishable/anon key. The browser stores these public settings in `localStorage` under `backlogiq.supabase.config.v1`.
+3. Sign in or create an account. After successful authentication the password field is cleared, and the workspace remains hidden until its records have finished loading.
+4. Use **Change connection settings** to edit or reselect the connection later. If the URL or key changes, the saved auth session and in-memory project/request records are cleared and sign-in is required again. Use **Forget saved connection** to clear the connection and session.
 
 Never enter or commit database passwords, service-role keys, secret keys, or tokens.
 
@@ -32,46 +31,28 @@ In Supabase:
 
 ## Manual RLS migration
 
-The file `supabase/migrations/20261118_version_a_owner_rls.sql` is for manual review and execution outside the app. It is not run automatically.
+The file `supabase/migrations/20261118_version_a_owner_rls.sql` is for manual review and execution outside the app. It is not run automatically and has not been executed.
 
-The proposed migration:
+The proposed migration inventories existing policies, replaces policies on only the Version A tables, creates owner-only project select/insert/update policies (no project DELETE policy), and creates owner-only request select/insert policies (no request UPDATE or DELETE policy). It revokes project DELETE and request UPDATE/DELETE privileges from the authenticated browser role. Preserve this migration unchanged until the existing database policies have been reviewed.
 
-- inventories existing policies;
-- removes existing policies on only `projects` and `stakeholder_requests`;
-- creates owner-only project select/insert/update policies;
-- creates no project DELETE policy;
-- creates owner-only request select/insert policies;
-- creates no request UPDATE or DELETE policy;
-- revokes project DELETE and request UPDATE/DELETE privileges from the `authenticated` browser role;
-- preserves existing schemas and rows.
+## Tests
 
-Existing project or request policies outside these tables are not modified. The migration should not be run until a database administrator confirms the policy inventory and existing FK behavior.
+### Static/manual browser checks (no Supabase credentials required)
 
-## Static checks
+- With empty local storage, open `cloud.html` and verify the connection form is visible.
+- Connect using placeholder/public test settings only, then use Change connection settings and Forget saved connection to verify their visibility and local UI reset behavior.
+- Run a JavaScript syntax check by extracting the inline `<script>` body and executing `node --check` on the extracted file, or inspect browser devtools for syntax errors.
+- Confirm requests render escaped values and the request insert payload omits `status`.
+- Confirm `index.html` is unchanged.
 
-These checks do not require live credentials:
+### Live checks requiring Supabase credentials
 
-- A new browser/empty local storage branch renders the setup panel first.
-- `showState()` does not hide setup merely because `config` is null.
-- A “Change connection settings” button is available from auth and workspace states.
-- Inline JavaScript should be syntax-checked from the complete file using Node: `node --check` against an extracted script or by using a browser console.
-- Stored values are rendered through `esc()` rather than as raw HTML.
-- No database password or service-role/secret key is present in the browser file.
-- `index.html` is unchanged by this first commit.
+These have **not** been run. Against a configured test Supabase project, verify:
 
-## Manual live tests requiring Supabase credentials
+1. Login: valid credentials authenticate; invalid credentials show an error; password is cleared after successful login.
+2. Sign-out: auth fields clear, cached projects disappear from memory/UI, project selection resets, and the next login reloads that user's data.
+3. Account switching: sign out of account A, then sign in as account B; account A's records must not remain visible during or after B's loading.
+4. New browser storage: setup panel displays; configure public URL/key; sign in and confirm saved records load.
+5. Project/request creation, refresh, re-login, Version A field mapping, default status behavior, and owner isolation under RLS.
 
-No live test has been performed in this repository tooling. A Supabase project, public key, and test accounts are required to verify:
-
-1. sign-in and account creation;
-2. project insert and cross-device retrieval;
-3. request insert using exact Version A fields;
-4. default `status` behavior;
-5. sign-out and sign-in-again retrieval;
-6. cross-account isolation with RLS;
-7. attempts to delete a project from the browser fail or are blocked;
-8. attempts to update/delete a request from the browser fail or are blocked.
-
-## Safety scope
-
-This phase does not add a project-delete control or API call. The RLS migration also contains no project DELETE policy and no browser request UPDATE/DELETE policy. The migration is a separate file and must be executed manually only after review.
+Do not use real student, employee, or confidential data in testing.
