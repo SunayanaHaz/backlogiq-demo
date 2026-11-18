@@ -60,7 +60,6 @@
   function clearTell() { $('message').classList.add('hidden'); }
 
   function showState() {
-    // Setup is visible on a first visit and whenever the user chooses to change it.
     $('setup').classList.toggle('hidden', !!config && !editingConfig);
     $('auth').classList.toggle('hidden', !config || !!session);
     $('workspace').classList.toggle('hidden', !config || !session);
@@ -153,8 +152,8 @@
 
   function beginConnectionChange() {
     editingConfig = true;
-    if ($('supabaseUrl') && config) $('supabaseUrl').value = config.url;
-    if ($('supabaseKey') && config) $('supabaseKey').value = '';
+    if (config) $('supabaseUrl').value = config.url;
+    $('supabaseKey').value = '';
     showState();
     window.scrollTo({top:0, behavior:'smooth'});
   }
@@ -165,11 +164,21 @@
       const key = $('supabaseKey').value.trim();
       if (!/^https:\/\/[a-zA-Z0-9.-]+$/.test(url)) throw new Error('Enter a valid Supabase HTTPS project URL.');
       if (!key) throw new Error('Enter the public publishable/anon key.');
+      const changed = !config || config.url !== url || config.key !== key;
       config = {url, key};
       localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+      if (changed) {
+        saveSession(null);
+        projects = [];
+        $('projects').innerHTML = '<p class="muted">Sign in to load saved projects.</p>';
+        $('requests').innerHTML = '<p class="muted">Sign in to load saved requests.</p>';
+        $('projectSelect').innerHTML = '<option value="">Create or select a project first</option>';
+        $('email').value = '';
+        $('password').value = '';
+      }
       editingConfig = false;
       showState();
-      tell('Public connection settings saved in this browser. Sign in or create an account to continue.', 'success');
+      tell(changed && session === null ? 'Connection saved. Sign in again to load this Supabase account.' : 'Connection settings saved.', 'success');
     } catch (error) { tell(error.message, 'error'); }
   });
 
@@ -182,6 +191,11 @@
     projects = [];
     $('supabaseUrl').value = '';
     $('supabaseKey').value = '';
+    $('email').value = '';
+    $('password').value = '';
+    $('projects').innerHTML = '<p class="muted">Connect and sign in to load saved projects.</p>';
+    $('requests').innerHTML = '<p class="muted">Select a project to view its requests.</p>';
+    $('projectSelect').innerHTML = '<option value="">Create or select a project first</option>';
     showState();
     tell('Saved connection and sign-in removed from this browser.', 'success');
   });
@@ -227,11 +241,6 @@
     catch (error) { tell(error.message, 'error'); }
   });
 
-  $('projectForm').addEventListener('submit', async event => {
-    event.preventEventDefault ? event.preventEventDefault() : event.preventDefault();
-  });
-
-  // Use a standards-only submit handler.
   $('projectForm').onsubmit = async event => {
     event.preventDefault();
     try {
