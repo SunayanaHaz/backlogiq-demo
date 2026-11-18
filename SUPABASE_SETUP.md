@@ -31,9 +31,7 @@ In Supabase:
 
 ## Manual RLS migration
 
-The file `supabase/migrations/20261118_version_a_owner_rls.sql` is for manual review and execution outside the app. It is not run automatically and has not been executed.
-
-The proposed migration inventories existing policies, replaces policies on only the Version A tables, creates owner-only project select/insert/update policies (no project DELETE policy), and creates owner-only request select/insert policies (no request UPDATE or DELETE policy). It revokes project DELETE and request UPDATE/DELETE privileges from the authenticated browser role. Preserve this migration unchanged until the existing database policies have been reviewed.
+The file `supabase/migrations/20261118_version_a_owner_rls.sql` is for manual review and execution outside the app. It is not run automatically and has not been executed. Leave it unchanged until the existing database policies have been reviewed.
 
 ## Tests
 
@@ -41,18 +39,14 @@ The proposed migration inventories existing policies, replaces policies on only 
 
 - With empty local storage, open `cloud.html` and verify the connection form is visible.
 - Connect using placeholder/public test settings only, then use Change connection settings and Forget saved connection to verify their visibility and local UI reset behavior.
+- Verify Sign Out hides the workspace and clears project/request forms and cached rows immediately; no waiting on the logout request should be needed.
+- To test stale response protection, delay a projects or requests fetch, sign out or switch connections before it resolves, and verify the old response does not repopulate the UI.
 - Run a JavaScript syntax check by extracting the inline `<script>` body and executing `node --check` on the extracted file, or inspect browser devtools for syntax errors.
 - Confirm requests render escaped values and the request insert payload omits `status`.
-- Confirm `index.html` is unchanged.
+- Confirm `index.html` and the SQL migration are unchanged.
 
 ### Live checks requiring Supabase credentials
 
-These have **not** been run. Against a configured test Supabase project, verify:
-
-1. Login: valid credentials authenticate; invalid credentials show an error; password is cleared after successful login.
-2. Sign-out: auth fields clear, cached projects disappear from memory/UI, project selection resets, and the next login reloads that user's data.
-3. Account switching: sign out of account A, then sign in as account B; account A's records must not remain visible during or after B's loading.
-4. New browser storage: setup panel displays; configure public URL/key; sign in and confirm saved records load.
-5. Project/request creation, refresh, re-login, Version A field mapping, default status behavior, and owner isolation under RLS.
+These have **not** been run. Against a configured test Supabase project, verify login, sign-out, account switching, project/request creation, refresh, re-login, Version A field mapping, default status behavior, owner isolation, and rejection of browser project-delete and request-update/delete attempts under reviewed RLS policies.
 
 Do not use real student, employee, or confidential data in testing.

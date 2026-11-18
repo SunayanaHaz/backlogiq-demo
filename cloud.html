@@ -55,10 +55,14 @@
   let editingConfig = false;
   let workspaceReady = false;
   let projects = [];
+  let contextVersion = 0;
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function tell(text, kind = '') { const el = $('message'); el.textContent = text; el.className = 'notice' + (kind ? ' ' + kind : ''); el.classList.remove('hidden'); }
   function clearTell() { $('message').classList.add('hidden'); }
+  function staleContextError() { const error = new Error('Request belongs to a previous sign-in or connection.'); error.code = 'STALE_CONTEXT'; return error; }
+  function isStale(error) { return error?.code === 'STALE_CONTEXT'; }
+  function assertCurrent(version) { if (version !== contextVersion) throw staleContextError(); }
 
   function clearWorkspaceData() {
     workspaceReady = false;
@@ -67,6 +71,14 @@
     $('requests').innerHTML = '<p class="muted">Sign in to load saved requests.</p>';
     $('projectSelect').innerHTML = '<option value="">Create or select a project first</option>';
     $('signedInAs').textContent = '';
+    $('projectForm').reset();
+    $('requestForm').reset();
+  }
+
+  function invalidateContext() {
+    contextVersion += 1;
+    clearWorkspaceData();
+    return contextVersion;
   }
 
   function clearAuthInputs() {
@@ -115,28 +127,42 @@
     return data;
   }
 
-  async function authAction(path, body) {
+  async function authAction(path, body, version = contextVersion) {
     const data = await request(path, {method:'POST', body, auth:false});
+    assertCurrent(version);
     if (data?.access_token) saveSession(data);
     return data;
   }
 
-  async function refreshIfNeeded() {
+  async function refreshIfNeeded(version) {
     if (!session?.refresh_token) return;
     const expiry = Number(session.expires_at || 0);
     if (expiry && expiry * 1000 > Date.now() + 60000) return;
+    const refreshToken = session.refresh_token;
     try {
-      const next = await authAction('/auth/v1/token?grant_type=refresh_token', {refresh_token:session.refresh_token});
+      const next = await request('/auth/v1/token?grant_type=refresh_token', {method:'POST', body:{refresh_token:refreshToken}, auth:false});
+      assertCurrent(version);
       if (!next?.access_token) throw new Error('Refresh failed');
-    } catch (_) {
-      saveSession(null);
-      clearWorkspaceData();
-      showState();
+      saveSession(next);
+    } catch (error) {
+      if (isStale(error)) throw error;
+      if (version === contextVersion) {
+        saveSession(null);
+        invalidateContext();
+        showState();
+      }
       throw new Error('Your sign-in expired. Please sign in again.');
     }
   }
 
-  async function api(path, options = {}) { await refreshIfNeeded(); return request(path, options); }
+  async function api(path, options = {}) {
+    const version = contextVersion;
+    await refreshIfNeeded(version);
+    assertCurrent(version);
+    const result = await request(path, options);
+    assertCurrent(version);
+    return result;
+  }
 
   function renderProjects() {
     const list = $('projects');
@@ -152,27 +178,35 @@
     if (projects.some(p => p.id === prev)) select.value = prev;
   }
 
-  async function loadRequests() {
+  async function loadRequests(version = contextVersion) {
+    assertCurrent(version);
     const projectId = $('projectSelect').value;
     if (!projectId) { $('requests').innerHTML = '<p class="muted">Select a project to view its requests.</p>'; return; }
     const rows = await api('/rest/v1/stakeholder_requests?select=id,project_id,stakeholder,request_text,status,created_at&project_id=eq.' + encodeURIComponent(projectId) + '&order=created_at.desc');
+    assertCurrent(version);
     const data = rows || [];
     $('requests').innerHTML = data.length ? data.map(r => '<article class="entry"><strong>' + esc(r.stakeholder) + '</strong><small>' + esc(r.status) + ' · Submitted ' + esc(new Date(r.created_at).toLocaleString()) + '</small><p>' + esc(r.request_text) + '</p></article>').join('') : '<p class="muted">No stakeholder requests saved for this project yet.</p>';
   }
 
   async function loadWorkspace() {
+    const version = contextVersion;
     clearTell();
     clearWorkspaceData();
     showState();
     try {
-      projects = await api('/rest/v1/projects?select=id,name,goal,created_at&order=created_at.desc') || [];
+      const loadedProjects = await api('/rest/v1/projects?select=id,name,goal,created_at&order=created_at.desc');
+      assertCurrent(version);
+      projects = loadedProjects || [];
       renderProjects();
-      await loadRequests();
+      await loadRequests(version);
+      assertCurrent(version);
       workspaceReady = true;
       showState();
     } catch (error) {
-      clearWorkspaceData();
-      showState();
+      if (!isStale(error) && version === contextVersion) {
+        clearWorkspaceData();
+        showState();
+      }
       throw error;
     }
   }
@@ -195,9 +229,9 @@
       config = {url, key};
       localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
       if (changed) {
+        invalidateContext();
         saveSession(null);
         clearAuthInputs();
-        clearWorkspaceData();
       }
       editingConfig = false;
       showState();
@@ -206,13 +240,13 @@
   });
 
   $('forgetConfig').addEventListener('click', () => {
+    invalidateContext();
     localStorage.removeItem(CONFIG_KEY);
     localStorage.removeItem(SESSION_KEY);
     config = null;
     session = null;
     editingConfig = false;
     clearAuthInputs();
-    clearWorkspaceData();
     $('supabaseUrl').value = '';
     $('supabaseKey').value = '';
     showState();
@@ -224,32 +258,36 @@
 
   $('signIn').addEventListener('click', async () => {
     clearTell();
-    clearWorkspaceData();
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    invalidateContext();
+    saveSession(null);
     showState();
     try {
-      const email = $('email').value.trim();
-      const password = $('password').value;
       if (!email || !password) throw new Error('Enter your email and password.');
-      await authAction('/auth/v1/token?grant_type=password', {email, password});
+      const version = contextVersion;
+      await authAction('/auth/v1/token?grant_type=password', {email, password}, version);
+      assertCurrent(version);
       clearAuthInputs();
       await loadWorkspace();
       tell('Signed in. Your cloud projects are loaded.', 'success');
     } catch (error) {
-      if (!session) clearAuthInputs();
-      showState();
-      tell(error.message, 'error');
+      if (!isStale(error)) { clearAuthInputs(); showState(); tell(error.message, 'error'); }
     }
   });
 
   $('signUp').addEventListener('click', async () => {
     clearTell();
-    clearWorkspaceData();
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    invalidateContext();
+    saveSession(null);
     showState();
     try {
-      const email = $('email').value.trim();
-      const password = $('password').value;
       if (!email || password.length < 8) throw new Error('Enter a valid email and a password of at least 8 characters.');
-      const data = await authAction('/auth/v1/signup', {email, password});
+      const version = contextVersion;
+      const data = await authAction('/auth/v1/signup', {email, password}, version);
+      assertCurrent(version);
       clearAuthInputs();
       if (data?.access_token) {
         await loadWorkspace();
@@ -261,24 +299,31 @@
         tell('Account created. Check your email to confirm, then sign in.', 'success');
       }
     } catch (error) {
-      if (!session) clearAuthInputs();
-      showState();
-      tell(error.message, 'error');
+      if (!isStale(error)) { clearAuthInputs(); showState(); tell(error.message, 'error'); }
     }
   });
 
-  $('signOut').addEventListener('click', async () => {
-    try { await api('/auth/v1/logout', {method:'POST'}); } catch (_) {}
+  $('signOut').addEventListener('click', () => {
+    const oldConfig = config;
+    const oldAccessToken = session?.access_token;
+    invalidateContext();
     saveSession(null);
     clearAuthInputs();
-    clearWorkspaceData();
     showState();
+    clearTell();
     tell('Signed out.', 'success');
+    // Best-effort remote logout happens after local account data is already hidden.
+    if (oldConfig && oldAccessToken) {
+      fetch(oldConfig.url + '/auth/v1/logout', {
+        method:'POST',
+        headers:{apikey:oldConfig.key, Authorization:'Bearer ' + oldAccessToken}
+      }).catch(() => {});
+    }
   });
 
   $('reload').addEventListener('click', async () => {
     try { await loadWorkspace(); tell('Projects and requests refreshed from Supabase.', 'success'); }
-    catch (error) { tell(error.message, 'error'); }
+    catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
   });
 
   $('projectForm').onsubmit = async event => {
@@ -292,7 +337,7 @@
       $('projectForm').reset();
       await loadWorkspace();
       tell('Project saved to Supabase.', 'success');
-    } catch (error) { tell(error.message, 'error'); }
+    } catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
   };
 
   $('requestForm').onsubmit = async event => {
@@ -305,18 +350,18 @@
       if (stakeholder.length < 2 || request_text.length < 3) throw new Error('Add the stakeholder and original request.');
       // Omit status so the existing Version A database default applies.
       await api('/rest/v1/stakeholder_requests', {method:'POST', body:{project_id, stakeholder, request_text}, prefer:'return=minimal'});
-      $('requestText').value = '';
+      $('requestForm').reset();
       await loadRequests();
       tell('Original stakeholder request saved. The database supplied its default status.', 'success');
-    } catch (error) { tell(error.message, 'error'); }
+    } catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
   };
 
-  $('projectSelect').addEventListener('change', () => loadRequests().catch(error => tell(error.message, 'error')));
+  $('projectSelect').addEventListener('change', () => loadRequests().catch(error => { if (!isStale(error)) tell(error.message, 'error'); }));
   $('projects').addEventListener('click', event => {
     const button = event.target.closest('.choose-project');
     if (!button) return;
     $('projectSelect').value = button.dataset.id;
-    loadRequests().then(() => $('requests').scrollIntoView({behavior:'smooth', block:'center'})).catch(error => tell(error.message, 'error'));
+    loadRequests().then(() => $('requests').scrollIntoView({behavior:'smooth', block:'center'})).catch(error => { if (!isStale(error)) tell(error.message, 'error'); });
   });
 
   readConfig();
@@ -324,7 +369,7 @@
   if (session && !session.access_token) saveSession(null);
   if (session) clearWorkspaceData();
   showState();
-  if (config && session) loadWorkspace().catch(error => tell(error.message, 'error'));
+  if (config && session) loadWorkspace().catch(error => { if (!isStale(error)) tell(error.message, 'error'); });
 })();
 </script>
 </body>
