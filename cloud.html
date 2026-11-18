@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151025">
+  <title>BacklogIQ — Cloud Projects</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#241a36;background:#f8f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e4ef;padding:16px max(20px,calc((100vw - 1060px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:850;letter-spacing:.02em;color:#35265b}.brand span{color:#7153c2}a{color:#5e43b6;text-decoration:none;font-weight:700;font-size:13px}a:hover{text-decoration:underline}main{max-width:1060px;margin:32px auto;padding:0 20px 50px}h1{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin:0 0 12px}.muted{color:#655b73;font-size:14px;line-height:1.55}.panel{background:#fff;border:1px solid #e8e4ef;border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 5px 22px #241a3608}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750}.field input,.field textarea,.field select{font:inherit;width:100%;border:1px solid #d9d4e2;border-radius:8px;padding:10px;background:#fff;color:#241a36}.field textarea{min-height:110px;resize:vertical}button{border:0;border-radius:8px;padding:10px 14px;background:#5e43b6;color:white;font:inherit;font-weight:700;cursor:pointer}button.secondary{color:#514178;background:#f1eef7;border:1px solid #e3dcef}button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.list{display:grid;gap:9px}.entry{border:1px solid #ece8f2;background:#fcfbfe;border-radius:9px;padding:12px}.entry strong{display:block;font-size:14px}.entry p{margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5}.entry small{color:#655b73}.notice{border-radius:8px;background:#f1eef7;padding:11px 13px;font-size:13px;line-height:1.5;margin:12px 0}.notice.error{background:#fff0f1;color:#812b38}.notice.success{background:#eaf7f1;color:#17634f}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.session{font-size:12px;color:#655b73;overflow-wrap:anywhere}.warning{font-size:12px;color:#665b73}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #1a7cc7;outline-offset:2px}@media(max-width:700px){.grid{grid-template-columns:1fr}main{margin-top:22px}header{padding:15px 20px}.toprow{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header><div class="brand">✦ BACKLOG<span>IQ</span> <small style="font-weight:500;color:#655b73">/ Cloud Projects</small></div><a href="index.html">Return to simulation</a></header>
+  <main>
+    <h1>Cloud Projects</h1>
+    <p class="muted">Sign in to save product projects and original stakeholder requests to Supabase. Use the same account on another device to retrieve them. Use synthetic examples only.</p>
+
+    <section id="setup" class="panel">
+      <h2 id="setupHeading">Connect your Supabase project</h2>
+      <p class="muted">In Supabase, open <strong>Project Settings → API</strong> and enter the project URL and public publishable/anon key. This browser stores public connection settings only. Never enter a service-role key, secret key, or database password.</p>
+      <div class="field"><label for="supabaseUrl">Project URL</label><input id="supabaseUrl" type="url" placeholder="https://your-project.supabase.co" autocomplete="url"></div>
+      <div class="field"><label for="supabaseKey">Publishable / anon key</label><input id="supabaseKey" type="password" placeholder="sb_publishable_… or legacy anon key" autocomplete="off"></div>
+      <div class="row"><button id="connect" type="button">Connect</button><button id="forgetConfig" class="secondary" type="button">Forget saved connection</button></div>
+    </section>
+
+    <section id="auth" class="panel hidden">
+      <h2>Sign in or create an account</h2>
+      <p class="muted">Project and request access is intended to be restricted by Supabase RLS to the authenticated owner.</p>
+      <div class="grid"><div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="password">Password (minimum 8 characters)</label><input id="password" type="password" autocomplete="current-password" minlength="8"></div>
+        <div class="row"><button id="signIn" type="button">Sign in</button><button id="signUp" class="secondary" type="button">Create account</button></div>
+      </div><div class="notice">If email confirmation is enabled, confirm Supabase’s email before signing in. Use a unique password.</div></div>
+      <div class="row"><button id="changeConnection" class="secondary" type="button">Change connection settings</button></div>
+    </section>
+
+    <div id="workspace" class="hidden">
+      <section class="panel"><div class="toprow"><div><h2>Your cloud workspace</h2><div id="signedInAs" class="session"></div></div><div class="row"><button id="changeConnectionWorkspace" class="secondary" type="button">Change connection</button><button id="reload" class="secondary" type="button">Refresh</button><button id="signOut" class="secondary" type="button">Sign out</button></div></div></section>
+      <div class="grid">
+        <section class="panel"><h2>Create a product project</h2><form id="projectForm"><div class="field"><label for="projectName">Project name</label><input id="projectName" maxlength="120" required placeholder="e.g. Synthetic support discovery"></div><div class="field"><label for="projectGoal">Product goal</label><textarea id="projectGoal" maxlength="2000" required placeholder="What outcome should this product help achieve?"></textarea></div><button type="submit">Save project</button></form></section>
+        <section class="panel"><h2>Submit a stakeholder request</h2><form id="requestForm"><div class="field"><label for="projectSelect">Project</label><select id="projectSelect" required><option value="">Create or select a project first</option></select></div><div class="field"><label for="stakeholder">Stakeholder / source</label><input id="stakeholder" maxlength="160" required placeholder="e.g. Synthetic pilot stakeholder"></div><div class="field"><label for="requestText">Original request</label><textarea id="requestText" maxlength="6000" required placeholder="Enter a synthetic stakeholder request"></textarea></div><button type="submit">Save original request</button></form></section>
+      </div>
+      <div class="grid"><section class="panel"><h2>Saved projects</h2><div id="projects" class="list"><p class="muted">Loading projects…</p></div></section><section class="panel"><h2>Saved stakeholder requests</h2><div id="requests" class="list"><p class="muted">Select a project to view requests.</p></div></section></div>
+    </div>
+    <div id="message" class="notice hidden" role="status" aria-live="polite"></div>
+  </main>
+<script>
+(() => {
+  'use strict';
+  const CONFIG_KEY = 'backlogiq.supabase.config.v1';
+  const SESSION_KEY = 'backlogiq.supabase.session.v1';
+  const $ = id => document.getElementById(id);
+  let config = null;
+  let session = null;
+  let editingConfig = false;
+  let projects = [];
+
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function tell(text, kind = '') { const el = $('message'); el.textContent = text; el.className = 'notice' + (kind ? ' ' + kind : ''); el.classList.remove('hidden'); }
+  function clearTell() { $('message').classList.add('hidden'); }
+
+  function showState() {
+    // Setup is visible on a first visit and whenever the user chooses to change it.
+    $('setup').classList.toggle('hidden', !!config && !editingConfig);
+    $('auth').classList.toggle('hidden', !config || !!session);
+    $('workspace').classList.toggle('hidden', !config || !session);
+    if (session) $('signedInAs').textContent = 'Signed in as ' + (session.user?.email || 'account');
+  }
+
+  function readConfig() {
+    try {
+      const c = JSON.parse(localStorage.getItem(CONFIG_KEY));
+      if (c?.url && c?.key) { config = c; return true; }
+    } catch (_) {}
+    return false;
+  }
+
+  function readSession() {
+    try { session = JSON.parse(localStorage.getItem(SESSION_KEY)); }
+    catch (_) { session = null; }
+  }
+
+  function saveSession(value) {
+    session = value;
+    if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value));
+    else localStorage.removeItem(SESSION_KEY);
+  }
+
+  async function request(path, {method='GET', body, auth=true, prefer} = {}) {
+    const headers = {'apikey':config.key, 'Content-Type':'application/json'};
+    if (auth) headers.Authorization = 'Bearer ' + (session?.access_token || config.key);
+    if (prefer) headers.Prefer = prefer;
+    const response = await fetch(config.url + path, {method, headers, ...(body === undefined ? {} : {body:JSON.stringify(body)})});
+    const text = await response.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch (_) { data = text; }
+    if (!response.ok) {
+      const message = typeof data === 'object' ? (data.msg || data.message || data.error_description || data.error || JSON.stringify(data)) : data;
+      throw new Error(message || 'Request failed (' + response.status + ')');
+    }
+    return data;
+  }
+
+  async function authAction(path, body) {
+    const data = await request(path, {method:'POST', body, auth:false});
+    if (data?.access_token) saveSession(data);
+    return data;
+  }
+
+  async function refreshIfNeeded() {
+    if (!session?.refresh_token) return;
+    const expiry = Number(session.expires_at || 0);
+    if (expiry && expiry * 1000 > Date.now() + 60000) return;
+    try {
+      const next = await authAction('/auth/v1/token?grant_type=refresh_token', {refresh_token:session.refresh_token});
+      if (!next?.access_token) throw new Error('Refresh failed');
+    } catch (_) {
+      saveSession(null);
+      throw new Error('Your sign-in expired. Please sign in again.');
+    }
+  }
+
+  async function api(path, options = {}) { await refreshIfNeeded(); return request(path, options); }
+
+  function renderProjects() {
+    const list = $('projects');
+    const select = $('projectSelect');
+    if (!projects.length) {
+      list.innerHTML = '<p class="muted">No saved projects yet. Create one to begin.</p>';
+      select.innerHTML = '<option value="">Create or select a project first</option>';
+      return;
+    }
+    list.innerHTML = projects.map(p => '<article class="entry"><strong>' + esc(p.name) + '</strong><small>Created ' + esc(new Date(p.created_at).toLocaleString()) + '</small><p>' + esc(p.goal) + '</p><button class="secondary choose-project" data-id="' + esc(p.id) + '" type="button">View requests</button></article>').join('');
+    const prev = select.value;
+    select.innerHTML = projects.map(p => '<option value="' + esc(p.id) + '">' + esc(p.name) + '</option>').join('');
+    if (projects.some(p => p.id === prev)) select.value = prev;
+  }
+
+  async function loadRequests() {
+    const projectId = $('projectSelect').value;
+    if (!projectId) { $('requests').innerHTML = '<p class="muted">Select a project to view its requests.</p>'; return; }
+    const rows = await api('/rest/v1/stakeholder_requests?select=id,project_id,stakeholder,request_text,status,created_at&project_id=eq.' + encodeURIComponent(projectId) + '&order=created_at.desc');
+    const data = rows || [];
+    $('requests').innerHTML = data.length ? data.map(r => '<article class="entry"><strong>' + esc(r.stakeholder) + '</strong><small>' + esc(r.status) + ' · Submitted ' + esc(new Date(r.created_at).toLocaleString()) + '</small><p>' + esc(r.request_text) + '</p></article>').join('') : '<p class="muted">No stakeholder requests saved for this project yet.</p>';
+  }
+
+  async function loadWorkspace() {
+    clearTell();
+    projects = await api('/rest/v1/projects?select=id,name,goal,created_at&order=created_at.desc') || [];
+    renderProjects();
+    await loadRequests();
+  }
+
+  function beginConnectionChange() {
+    editingConfig = true;
+    if ($('supabaseUrl') && config) $('supabaseUrl').value = config.url;
+    if ($('supabaseKey') && config) $('supabaseKey').value = '';
+    showState();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  $('connect').addEventListener('click', () => {
+    try {
+      const url = $('supabaseUrl').value.trim().replace(/\/$/, '');
+      const key = $('supabaseKey').value.trim();
+      if (!/^https:\/\/[a-zA-Z0-9.-]+$/.test(url)) throw new Error('Enter a valid Supabase HTTPS project URL.');
+      if (!key) throw new Error('Enter the public publishable/anon key.');
+      config = {url, key};
+      localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+      editingConfig = false;
+      showState();
+      tell('Public connection settings saved in this browser. Sign in or create an account to continue.', 'success');
+    } catch (error) { tell(error.message, 'error'); }
+  });
+
+  $('forgetConfig').addEventListener('click', () => {
+    localStorage.removeItem(CONFIG_KEY);
+    localStorage.removeItem(SESSION_KEY);
+    config = null;
+    session = null;
+    editingConfig = false;
+    projects = [];
+    $('supabaseUrl').value = '';
+    $('supabaseKey').value = '';
+    showState();
+    tell('Saved connection and sign-in removed from this browser.', 'success');
+  });
+
+  $('changeConnection').addEventListener('click', beginConnectionChange);
+  $('changeConnectionWorkspace').addEventListener('click', beginConnectionChange);
+
+  $('signIn').addEventListener('click', async () => {
+    clearTell();
+    try {
+      const email = $('email').value.trim();
+      const password = $('password').value;
+      if (!email || !password) throw new Error('Enter your email and password.');
+      await authAction('/auth/v1/token?grant_type=password', {email, password});
+      showState();
+      await loadWorkspace();
+      tell('Signed in. Your cloud projects are loaded.', 'success');
+    } catch (error) { tell(error.message, 'error'); }
+  });
+
+  $('signUp').addEventListener('click', async () => {
+    clearTell();
+    try {
+      const email = $('email').value.trim();
+      const password = $('password').value;
+      if (!email || password.length < 8) throw new Error('Enter a valid email and a password of at least 8 characters.');
+      const data = await authAction('/auth/v1/signup', {email, password});
+      if (data?.access_token) { showState(); await loadWorkspace(); tell('Account created and signed in.', 'success'); }
+      else tell('Account created. Check your email to confirm, then sign in.', 'success');
+    } catch (error) { tell(error.message, 'error'); }
+  });
+
+  $('signOut').addEventListener('click', async () => {
+    try { await api('/auth/v1/logout', {method:'POST'}); } catch (_) {}
+    saveSession(null);
+    projects = [];
+    showState();
+    tell('Signed out.', 'success');
+  });
+
+  $('reload').addEventListener('click', async () => {
+    try { await loadWorkspace(); tell('Projects and requests refreshed from Supabase.', 'success'); }
+    catch (error) { tell(error.message, 'error'); }
+  });
+
+  $('projectForm').addEventListener('submit', async event => {
+    event.preventEventDefault ? event.preventEventDefault() : event.preventDefault();
+  });
+
+  // Use a standards-only submit handler.
+  $('projectForm').onsubmit = async event => {
+    event.preventDefault();
+    try {
+      const name = $('projectName').value.trim();
+      const goal = $('projectGoal').value.trim();
+      if (name.length < 2 || goal.length < 10) throw new Error('Enter a project name (at least 2 characters) and a meaningful goal (at least 10 characters).');
+      if (!session?.user?.id) throw new Error('Sign in again before creating a project.');
+      await api('/rest/v1/projects', {method:'POST', body:{owner_id:session.user.id, name, goal}, prefer:'return=minimal'});
+      $('projectForm').reset();
+      await loadWorkspace();
+      tell('Project saved to Supabase.', 'success');
+    } catch (error) { tell(error.message, 'error'); }
+  };
+
+  $('requestForm').onsubmit = async event => {
+    event.preventDefault();
+    try {
+      const project_id = $('projectSelect').value;
+      const stakeholder = $('stakeholder').value.trim();
+      const request_text = $('requestText').value.trim();
+      if (!project_id) throw new Error('Select a project first.');
+      if (stakeholder.length < 2 || request_text.length < 3) throw new Error('Add the stakeholder and original request.');
+      // Omit status so the existing Version A database default applies.
+      await api('/rest/v1/stakeholder_requests', {method:'POST', body:{project_id, stakeholder, request_text}, prefer:'return=minimal'});
+      $('requestText').value = '';
+      await loadRequests();
+      tell('Original stakeholder request saved. The database supplied its default status.', 'success');
+    } catch (error) { tell(error.message, 'error'); }
+  };
+
+  $('projectSelect').addEventListener('change', () => loadRequests().catch(error => tell(error.message, 'error')));
+  $('projects').addEventListener('click', event => {
+    const button = event.target.closest('.choose-project');
+    if (!button) return;
+    $('projectSelect').value = button.dataset.id;
+    loadRequests().then(() => $('requests').scrollIntoView({behavior:'smooth', block:'center'})).catch(error => tell(error.message, 'error'));
+  });
+
+  readConfig();
+  readSession();
+  if (session && !session.access_token) saveSession(null);
+  showState();
+  if (config && session) loadWorkspace().catch(error => tell(error.message, 'error'));
+})();
+</script>
+</body>
+</html>
