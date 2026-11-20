@@ -3,3 +3,6 @@
 # project/request ownership with RLS-protected REST reads. The gateway's legacy
 # JWT verification is disabled for compatibility with publishable API keys.
 verify_jwt = false
+
+[functions.analyze-backlog]
+verify_jwt = false
