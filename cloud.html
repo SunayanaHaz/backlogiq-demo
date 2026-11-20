@@ -6,18 +6,18 @@
   <meta name="theme-color" content="#151025">
   <title>BacklogIQ — Cloud Projects</title>
   <style>
-    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#241a36;background:#f8f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e4ef;padding:16px max(20px,calc((100vw - 1060px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:850;letter-spacing:.02em;color:#35265b}.brand span{color:#7153c2}a{color:#5e43b6;text-decoration:none;font-weight:700;font-size:13px}a:hover{text-decoration:underline}main{max-width:1060px;margin:32px auto;padding:0 20px 50px}h1{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin:0 0 12px}.muted{color:#655b73;font-size:14px;line-height:1.55}.panel{background:#fff;border:1px solid #e8e4ef;border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 5px 22px #241a3608}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750}.field input,.field textarea,.field select{font:inherit;width:100%;border:1px solid #d9d4e2;border-radius:8px;padding:10px;background:#fff;color:#241a36}.field textarea{min-height:110px;resize:vertical}button{border:0;border-radius:8px;padding:10px 14px;background:#5e43b6;color:white;font:inherit;font-weight:700;cursor:pointer}button.secondary{color:#514178;background:#f1eef7;border:1px solid #e3dcef}button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.list{display:grid;gap:9px}.entry{border:1px solid #ece8f2;background:#fcfbfe;border-radius:9px;padding:12px}.entry strong{display:block;font-size:14px}.entry p{margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5}.entry small{color:#655b73}.notice{border-radius:8px;background:#f1eef7;padding:11px 13px;font-size:13px;line-height:1.5;margin:12px 0}.notice.error{background:#fff0f1;color:#812b38}.notice.success{background:#eaf7f1;color:#17634f}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.session{font-size:12px;color:#655b73;overflow-wrap:anywhere}.warning{font-size:12px;color:#665b73}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #1a7cc7;outline-offset:2px}@media(max-width:700px){.grid{grid-template-columns:1fr}main{margin-top:22px}header{padding:15px 20px}.toprow{align-items:flex-start;flex-direction:column}}
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#241a36;background:#f8f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e4ef;padding:16px max(20px,calc((100vw - 1060px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:850;letter-spacing:.02em;color:#35265b}.brand span{color:#7153c2}a{color:#5e43b6;text-decoration:none;font-weight:700;font-size:13px}a:hover{text-decoration:underline}main{max-width:1120px;margin:32px auto;padding:0 20px 50px}h1{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin:0 0 12px}.muted{color:#655b73;font-size:14px;line-height:1.55}.panel{background:#fff;border:1px solid #e8e4ef;border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 5px 22px #241a3608}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750}.field input,.field textarea,.field select{font:inherit;width:100%;border:1px solid #d9d4e2;border-radius:8px;padding:10px;background:#fff;color:#241a36}.field textarea{min-height:84px;resize:vertical}button{border:0;border-radius:8px;padding:10px 14px;background:#5e43b6;color:white;font:inherit;font-weight:700;cursor:pointer}button.secondary{color:#514178;background:#f1eef7;border:1px solid #e3dcef}button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.list{display:grid;gap:9px}.entry{border:1px solid #ece8f2;background:#fcfbfe;border-radius:9px;padding:12px}.entry strong{display:block;font-size:14px}.entry p{margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5}.entry small{color:#655b73}.entry.selected{border-color:#765dc4;background:#f7f4ff}.notice{border-radius:8px;background:#f1eef7;padding:11px 13px;font-size:13px;line-height:1.5;margin:12px 0}.notice.error{background:#fff0f1;color:#812b38}.notice.success{background:#eaf7f1;color:#17634f}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.session{font-size:12px;color:#655b73;overflow-wrap:anywhere}.warning{font-size:12px;color:#665b73}.request-card,.backlog-card{width:100%;text-align:left;color:inherit;background:#fcfbfe;border:1px solid #ece8f2;font-weight:400}.request-card:hover,.backlog-card:hover{border-color:#aa9bd4}.request-card[aria-pressed=true]{border-color:#765dc4;background:#f7f4ff}.status-pill{display:inline-block;border-radius:99px;background:#eeeaf7;color:#514178;padding:3px 8px;font-size:11px;font-weight:750}.actions{display:flex;justify-content:space-between;gap:10px;align-items:center}.criteria-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.panel-subtitle{margin:0 0 8px;color:#53476a;font-size:13px;font-weight:750}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #1a7cc7;outline-offset:2px}@media(max-width:760px){.grid{grid-template-columns:1fr}.criteria-grid{grid-template-columns:1fr}main{margin-top:22px}header{padding:15px 20px}.toprow{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
   <header><div class="brand">✦ BACKLOG<span>IQ</span> <small style="font-weight:500;color:#655b73">/ Cloud Projects</small></div><a href="index.html">Return to simulation</a></header>
   <main>
     <h1>Cloud Projects</h1>
-    <p class="muted">Sign in to save product projects and original stakeholder requests to Supabase. Use the same account on another device to retrieve them. Use synthetic examples only.</p>
+    <p class="muted">Manage saved stakeholder requests and refine them into backlog items. This cloud workflow is separate from the fictional Guided Simulation; it does not run real AI or update the simulation lifecycle.</p>
 
     <section id="setup" class="panel">
       <h2>Connect your Supabase project</h2>
-      <p class="muted">Enter the project URL and public publishable/anon key from Supabase Project Settings → API. Only public settings are stored in this browser. Never enter a service-role key, secret key, or database password.</p>
+      <p class="muted">Enter the project URL and public publishable/anon key from Supabase Project Settings → API. Never enter a service-role key, secret key, or database password.</p>
       <div class="field"><label for="supabaseUrl">Project URL</label><input id="supabaseUrl" type="url" placeholder="https://your-project.supabase.co" autocomplete="url"></div>
       <div class="field"><label for="supabaseKey">Publishable / anon key</label><input id="supabaseKey" type="password" placeholder="sb_publishable_… or legacy anon key" autocomplete="off"></div>
       <div class="row"><button id="connect" type="button">Connect</button><button id="forgetConfig" class="secondary" type="button">Forget saved connection</button></div>
@@ -37,10 +37,40 @@
     <div id="workspace" class="hidden">
       <section class="panel"><div class="toprow"><div><h2>Your cloud workspace</h2><div id="signedInAs" class="session"></div></div><div class="row"><button id="changeConnectionWorkspace" class="secondary" type="button">Change connection</button><button id="reload" class="secondary" type="button">Refresh</button><button id="signOut" class="secondary" type="button">Sign out</button></div></div></section>
       <div class="grid">
-        <section class="panel"><h2>Create a product project</h2><form id="projectForm"><div class="field"><label for="projectName">Project name</label><input id="projectName" maxlength="120" required placeholder="e.g. Synthetic support discovery"></div><div class="field"><label for="projectGoal">Product goal</label><textarea id="projectGoal" maxlength="2000" required placeholder="What outcome should this product help achieve?"></textarea></div><button type="submit">Save project</button></form></section>
+        <section class="panel"><h2>Create a product project</h2><form id="projectForm"><div class="field"><label for="projectName">Project name</label><input id="projectName" maxlength="120" required placeholder="e.g. Support request discovery"></div><div class="field"><label for="projectGoal">Product goal</label><textarea id="projectGoal" maxlength="2000" required placeholder="What outcome should this product help achieve?"></textarea></div><button type="submit">Save project</button></form></section>
         <section class="panel"><h2>Submit a stakeholder request</h2><form id="requestForm"><div class="field"><label for="projectSelect">Project</label><select id="projectSelect" required><option value="">Create or select a project first</option></select></div><div class="field"><label for="stakeholder">Stakeholder / source</label><input id="stakeholder" maxlength="160" required placeholder="e.g. Synthetic pilot stakeholder"></div><div class="field"><label for="requestText">Original request</label><textarea id="requestText" maxlength="6000" required placeholder="Enter a synthetic stakeholder request"></textarea></div><button type="submit">Save original request</button></form></section>
       </div>
-      <div class="grid"><section class="panel"><h2>Saved projects</h2><div id="projects" class="list"><p class="muted">Sign in to load saved projects.</p></div></section><section class="panel"><h2>Saved stakeholder requests</h2><div id="requests" class="list"><p class="muted">Sign in to load saved requests.</p></div></section></div>
+
+      <section class="panel" aria-labelledby="refinementHeading">
+        <h2 id="refinementHeading">Refine a saved request</h2>
+        <p class="muted">Choose an original request, then create or edit a linked backlog item. The source request is never changed.</p>
+        <div class="grid">
+          <div><h3 class="panel-subtitle">1. Choose a stakeholder request</h3><div id="savedRequests" class="list"><p class="muted">Select a project to load requests.</p></div></div>
+          <div><h3 class="panel-subtitle">2. Refine into backlog item</h3><div id="selectedRequest" class="notice">Select a saved stakeholder request to begin.</div><button id="refineRequest" type="button" disabled>Refine into backlog item</button>
+            <form id="backlogForm" class="hidden">
+              <input id="backlogItemId" type="hidden">
+              <div class="field"><label for="itemTitle">Item title <span aria-hidden="true">*</span></label><input id="itemTitle" maxlength="200" required placeholder="A concise description of the work"></div>
+              <div class="grid">
+                <div class="field"><label for="itemType">Backlog item type <span aria-hidden="true">*</span></label><select id="itemType" required><option value="">Choose a type</option><option>Epic</option><option>User Story</option><option>Bug</option><option>Technical Task</option><option>Spike</option></select></div>
+                <div class="field"><label for="itemPriority">Priority</label><select id="itemPriority"><option>Medium</option><option>Critical</option><option>High</option><option>Low</option></select></div>
+              </div>
+              <div class="field"><label for="itemStatus">Status</label><select id="itemStatus"><option>Draft</option><option>Ready</option><option>In Progress</option><option>In Testing</option><option>Done</option></select></div>
+              <p class="panel-subtitle">Acceptance criteria</p>
+              <div class="criteria-grid">
+                <div class="field"><label for="criterionGiven">Given</label><textarea id="criterionGiven" maxlength="2000" placeholder="The context or starting state"></textarea></div>
+                <div class="field"><label for="criterionWhen">When</label><textarea id="criterionWhen" maxlength="2000" placeholder="The action or event"></textarea></div>
+                <div class="field"><label for="criterionThen">Then</label><textarea id="criterionThen" maxlength="2000" placeholder="The observable outcome"></textarea></div>
+              </div>
+              <div class="field"><label for="completionNotes">Outcome / completion notes <span id="completionHint" class="muted">(optional)</span></label><textarea id="completionNotes" maxlength="4000" placeholder="Useful for epics, technical tasks, and spikes"></textarea></div>
+              <div id="formErrors" class="notice error hidden" role="alert"></div>
+              <div class="row"><button id="saveBacklogItem" type="submit">Save as Draft</button><button id="cancelBacklogEdit" class="secondary" type="button">Cancel</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel"><h2>Project backlog</h2><p class="muted">A Done item records a Product Owner decision only; it does not claim that a real feature has shipped.</p><div id="backlogItems" class="list"><p class="muted">Select a project to load its backlog.</p></div></section>
+      <div class="grid"><section class="panel"><h2>Saved projects</h2><div id="projects" class="list"><p class="muted">Sign in to load saved projects.</p></div></section><section class="panel"><h2>Original stakeholder requests</h2><div id="requests" class="list"><p class="muted">Select a project to view requests.</p></div></section></div>
     </div>
     <div id="message" class="notice hidden" role="status" aria-live="polite"></div>
   </main>
@@ -50,326 +80,175 @@
   const CONFIG_KEY = 'backlogiq.supabase.config.v1';
   const SESSION_KEY = 'backlogiq.supabase.session.v1';
   const $ = id => document.getElementById(id);
-  let config = null;
-  let session = null;
-  let editingConfig = false;
-  let workspaceReady = false;
-  let projects = [];
-  let contextVersion = 0;
-
+  const TYPES = ['Epic', 'User Story', 'Bug', 'Technical Task', 'Spike'];
+  const PRIORITIES = ['Critical', 'High', 'Medium', 'Low'];
+  const STATUSES = ['Draft', 'Ready', 'In Progress', 'In Testing', 'Done'];
+  let config = null, session = null, editingConfig = false, workspaceReady = false;
+  let projects = [], requests = [], backlogItems = [], selectedRequestId = null, contextVersion = 0;
+  // A project-selection change must invalidate older request/backlog fetches without
+  // invalidating the user's authentication session.
+  let projectLoadVersion = 0, submitting = false;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function tell(text, kind = '') { const el = $('message'); el.textContent = text; el.className = 'notice' + (kind ? ' ' + kind : ''); el.classList.remove('hidden'); }
   function clearTell() { $('message').classList.add('hidden'); }
-  function staleContextError() { const error = new Error('Request belongs to a previous sign-in or connection.'); error.code = 'STALE_CONTEXT'; return error; }
-  function isStale(error) { return error?.code === 'STALE_CONTEXT'; }
-  function assertCurrent(version) { if (version !== contextVersion) throw staleContextError(); }
+  const staleError = () => Object.assign(new Error('This request belongs to an earlier account or connection.'), {code:'STALE_CONTEXT'});
+  const isStale = e => e?.code === 'STALE_CONTEXT';
+  function assertCurrent(version) { if (version !== contextVersion) throw staleError(); }
 
+  function clearBacklogForm() {
+    $('backlogForm').reset();
+    $('backlogItemId').value = '';
+    $('backlogForm').classList.add('hidden');
+    $('formErrors').classList.add('hidden');
+    $('refineRequest').textContent = 'Refine into backlog item';
+    $('saveBacklogItem').disabled = false;
+    $('cancelBacklogEdit').disabled = false;
+    updateSaveLabel();
+  }
   function clearWorkspaceData() {
-    workspaceReady = false;
-    projects = [];
+    // A pending fetch from a previous project/account must never repopulate the UI.
+    projectLoadVersion += 1;
+    workspaceReady = false; projects = []; requests = []; backlogItems = []; selectedRequestId = null;
     $('projects').innerHTML = '<p class="muted">Sign in to load saved projects.</p>';
-    $('requests').innerHTML = '<p class="muted">Sign in to load saved requests.</p>';
+    $('requests').innerHTML = '<p class="muted">Select a project to view requests.</p>';
+    $('savedRequests').innerHTML = '<p class="muted">Select a project to load requests.</p>';
+    $('backlogItems').innerHTML = '<p class="muted">Select a project to load its backlog.</p>';
     $('projectSelect').innerHTML = '<option value="">Create or select a project first</option>';
+    $('selectedRequest').textContent = 'Select a saved stakeholder request to begin.';
+    $('refineRequest').disabled = true;
     $('signedInAs').textContent = '';
-    $('projectForm').reset();
-    $('requestForm').reset();
+    $('projectForm').reset(); $('requestForm').reset(); clearBacklogForm();
   }
-
-  function invalidateContext() {
-    contextVersion += 1;
-    clearWorkspaceData();
-    return contextVersion;
-  }
-
-  function clearAuthInputs() {
-    $('email').value = '';
-    $('password').value = '';
-  }
-
+  function invalidateContext() { contextVersion += 1; submitting=false; clearWorkspaceData(); return contextVersion; }
+  function clearAuthInputs() { $('email').value = ''; $('password').value = ''; }
   function showState() {
     $('setup').classList.toggle('hidden', !!config && !editingConfig);
-    $('auth').classList.toggle('hidden', !config || (session && workspaceReady));
-    $('workspace').classList.toggle('hidden', !config || !session || !workspaceReady);
+    $('auth').classList.toggle('hidden', editingConfig || !config || (session && workspaceReady));
+    $('workspace').classList.toggle('hidden', editingConfig || !config || !session || !workspaceReady);
     if (session) $('signedInAs').textContent = 'Signed in as ' + (session.user?.email || 'account');
   }
-
-  function readConfig() {
-    try {
-      const c = JSON.parse(localStorage.getItem(CONFIG_KEY));
-      if (c?.url && c?.key) { config = c; return true; }
-    } catch (_) {}
-    return false;
-  }
-
-  function readSession() {
-    try { session = JSON.parse(localStorage.getItem(SESSION_KEY)); }
-    catch (_) { session = null; }
-  }
-
-  function saveSession(value) {
-    session = value;
-    if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value));
-    else localStorage.removeItem(SESSION_KEY);
-  }
+  function readConfig() { try { const c = JSON.parse(localStorage.getItem(CONFIG_KEY)); if (c?.url && c?.key) { config = c; return true; } } catch (_) {} return false; }
+  function readSession() { try { session = JSON.parse(localStorage.getItem(SESSION_KEY)); } catch (_) { session = null; } }
+  function saveSession(value) { session = value; if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value)); else localStorage.removeItem(SESSION_KEY); }
 
   async function request(path, {method='GET', body, auth=true, prefer} = {}) {
     const headers = {'apikey':config.key, 'Content-Type':'application/json'};
     if (auth) headers.Authorization = 'Bearer ' + (session?.access_token || config.key);
     if (prefer) headers.Prefer = prefer;
     const response = await fetch(config.url + path, {method, headers, ...(body === undefined ? {} : {body:JSON.stringify(body)})});
-    const text = await response.text();
-    let data = null;
+    const text = await response.text(); let data = null;
     try { data = text ? JSON.parse(text) : null; } catch (_) { data = text; }
-    if (!response.ok) {
-      const message = typeof data === 'object' ? (data.msg || data.message || data.error_description || data.error || JSON.stringify(data)) : data;
-      throw new Error(message || 'Request failed (' + response.status + ')');
-    }
+    if (!response.ok) { const message = typeof data === 'object' ? (data.msg || data.message || data.error_description || data.error || JSON.stringify(data)) : data; throw new Error(message || 'Request failed (' + response.status + ')'); }
     return data;
   }
-
-  async function authAction(path, body, version = contextVersion) {
-    const data = await request(path, {method:'POST', body, auth:false});
-    assertCurrent(version);
-    if (data?.access_token) saveSession(data);
-    return data;
-  }
-
+  async function authAction(path, body, version=contextVersion) { const data = await request(path, {method:'POST', body, auth:false}); assertCurrent(version); if (data?.access_token) saveSession(data); return data; }
   async function refreshIfNeeded(version) {
     if (!session?.refresh_token) return;
-    const expiry = Number(session.expires_at || 0);
-    if (expiry && expiry * 1000 > Date.now() + 60000) return;
-    const refreshToken = session.refresh_token;
-    try {
-      const next = await request('/auth/v1/token?grant_type=refresh_token', {method:'POST', body:{refresh_token:refreshToken}, auth:false});
-      assertCurrent(version);
-      if (!next?.access_token) throw new Error('Refresh failed');
-      saveSession(next);
-    } catch (error) {
-      if (isStale(error)) throw error;
-      if (version === contextVersion) {
-        saveSession(null);
-        invalidateContext();
-        showState();
-      }
-      throw new Error('Your sign-in expired. Please sign in again.');
-    }
+    const expiry = Number(session.expires_at || 0); if (expiry && expiry * 1000 > Date.now() + 60000) return;
+    try { const next = await request('/auth/v1/token?grant_type=refresh_token', {method:'POST', body:{refresh_token:session.refresh_token}, auth:false}); assertCurrent(version); if (!next?.access_token) throw new Error('Refresh failed'); saveSession(next); }
+    catch (error) { if (isStale(error)) throw error; if (version === contextVersion) { saveSession(null); invalidateContext(); showState(); } throw new Error('Your sign-in expired. Please sign in again.'); }
   }
-
-  async function api(path, options = {}) {
-    const version = contextVersion;
-    await refreshIfNeeded(version);
-    assertCurrent(version);
-    const result = await request(path, options);
-    assertCurrent(version);
-    return result;
-  }
+  async function api(path, options={}) { const version=contextVersion; await refreshIfNeeded(version); assertCurrent(version); const result=await request(path,options); assertCurrent(version); return result; }
 
   function renderProjects() {
-    const list = $('projects');
-    const select = $('projectSelect');
-    if (!projects.length) {
-      list.innerHTML = '<p class="muted">No saved projects yet. Create one to begin.</p>';
-      select.innerHTML = '<option value="">Create or select a project first</option>';
-      return;
+    const select=$('projectSelect');
+    $('projects').innerHTML = projects.length ? projects.map(p=>`<article class="entry"><strong>${esc(p.name)}</strong><small>Created ${esc(new Date(p.created_at).toLocaleString())}</small><p>${esc(p.goal)}</p></article>`).join('') : '<p class="muted">No saved projects yet. Create one to begin.</p>';
+    const old=select.value;
+    select.innerHTML=projects.length?projects.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join(''):'<option value="">Create or select a project first</option>';
+    if (projects.some(p=>p.id===old)) select.value=old;
+  }
+  function renderRequests() {
+    $('requests').innerHTML=requests.length?requests.map(r=>`<article class="entry"><strong>${esc(r.stakeholder)}</strong><small>${esc(r.status)} · ${esc(new Date(r.created_at).toLocaleString())}</small><p>${esc(r.request_text)}</p></article>`).join(''):'<p class="muted">No saved stakeholder requests for this project.</p>';
+    $('savedRequests').innerHTML=requests.length?requests.map(r=>`<button class="entry request-card ${selectedRequestId===r.id?'selected':''}" type="button" data-request-id="${esc(r.id)}" aria-pressed="${selectedRequestId===r.id}"><strong>${esc(r.stakeholder)}</strong><small>${esc(r.status)} · ${esc(new Date(r.created_at).toLocaleString())}</small><p>${esc(r.request_text)}</p></button>`).join(''):'<p class="muted">Save a stakeholder request first.</p>';
+  }
+  function renderBacklog() {
+    $('backlogItems').innerHTML=backlogItems.length?backlogItems.map(item=>`<article class="entry backlog-card"><div class="actions"><strong>${esc(item.title)}</strong><span class="status-pill">${esc(item.status)}</span></div><small>${esc(item.item_type)} · ${esc(item.priority)} priority</small><p><strong>Source request:</strong> ${esc(requests.find(r=>r.id===item.stakeholder_request_id)?.stakeholder||'Saved request')}</p><p><strong>Given</strong> ${esc(item.acceptance_given||'—')}<br><strong>When</strong> ${esc(item.acceptance_when||'—')}<br><strong>Then</strong> ${esc(item.acceptance_then||'—')}</p>${item.completion_notes?`<p><strong>Outcome / completion</strong> ${esc(item.completion_notes)}</p>`:''}<small>Updated ${esc(new Date(item.updated_at).toLocaleString())}</small><div class="row" style="margin-top:9px"><button type="button" class="secondary edit-backlog" data-item-id="${esc(item.id)}">Edit</button></div></article>`).join(''):'<p class="muted">No backlog items yet. Select a request and refine it.</p>';
+  }
+  function updateSaveLabel() { const status=$('itemStatus')?.value||'Draft'; $('saveBacklogItem').textContent=($('backlogItemId').value?'Save changes':'Save as '+status); }
+  function validationErrors({title,item_type,priority,status,acceptance_given,acceptance_when,acceptance_then,completion_notes}) {
+    const errors=[];
+    if (!title.trim()) errors.push('Enter an item title.');
+    if (!TYPES.includes(item_type)) errors.push('Choose a backlog item type.');
+    if (!PRIORITIES.includes(priority)) errors.push('Choose a valid priority.');
+    if (!STATUSES.includes(status)) errors.push('Choose a valid status.');
+    if (status==='Ready') {
+      const hasCriteria = !!(acceptance_given.trim() && acceptance_when.trim() && acceptance_then.trim());
+      if (['User Story','Bug'].includes(item_type) && !hasCriteria)
+        errors.push('User Stories and Bugs need Given, When, and Then criteria before they can be Ready.');
+      if (['Epic','Technical Task','Spike'].includes(item_type) && !completion_notes.trim() && !hasCriteria)
+        errors.push('For Ready Epics, Technical Tasks, and Spikes, provide completion notes or complete Given/When/Then criteria.');
     }
-    list.innerHTML = projects.map(p => '<article class="entry"><strong>' + esc(p.name) + '</strong><small>Created ' + esc(new Date(p.created_at).toLocaleString()) + '</small><p>' + esc(p.goal) + '</p><button class="secondary choose-project" data-id="' + esc(p.id) + '" type="button">View requests</button></article>').join('');
-    const prev = select.value;
-    select.innerHTML = projects.map(p => '<option value="' + esc(p.id) + '">' + esc(p.name) + '</option>').join('');
-    if (projects.some(p => p.id === prev)) select.value = prev;
+    return errors;
+  }
+  function readBacklogForm() { return {title:$('itemTitle').value.trim(), item_type:$('itemType').value, priority:$('itemPriority').value, status:$('itemStatus').value, acceptance_given:$('criterionGiven').value.trim(), acceptance_when:$('criterionWhen').value.trim(), acceptance_then:$('criterionThen').value.trim(), completion_notes:$('completionNotes').value.trim()}; }
+  function fillBacklogForm(item=null) {
+    $('backlogForm').reset(); $('backlogItemId').value=item?.id||'';
+    if (item) { $('itemTitle').value=item.title; $('itemType').value=item.item_type; $('itemPriority').value=item.priority; $('itemStatus').value=item.status; $('criterionGiven').value=item.acceptance_given||''; $('criterionWhen').value=item.acceptance_when||''; $('criterionThen').value=item.acceptance_then||''; $('completionNotes').value=item.completion_notes||''; }
+    else $('itemStatus').value='Draft';
+    $('backlogForm').classList.remove('hidden'); $('formErrors').classList.add('hidden'); updateSaveLabel(); $('itemTitle').focus();
   }
 
-  async function loadRequests(version = contextVersion) {
+  async function loadRequests(version=contextVersion) {
     assertCurrent(version);
+    const load = ++projectLoadVersion;
     const projectId = $('projectSelect').value;
-    if (!projectId) { $('requests').innerHTML = '<p class="muted">Select a project to view its requests.</p>'; return; }
-    const rows = await api('/rest/v1/stakeholder_requests?select=id,project_id,stakeholder,request_text,status,created_at&project_id=eq.' + encodeURIComponent(projectId) + '&order=created_at.desc');
-    assertCurrent(version);
-    const data = rows || [];
-    $('requests').innerHTML = data.length ? data.map(r => '<article class="entry"><strong>' + esc(r.stakeholder) + '</strong><small>' + esc(r.status) + ' · Submitted ' + esc(new Date(r.created_at).toLocaleString()) + '</small><p>' + esc(r.request_text) + '</p></article>').join('') : '<p class="muted">No stakeholder requests saved for this project yet.</p>';
+    const assertSelection = () => {
+      assertCurrent(version);
+      if (load !== projectLoadVersion || projectId !== $('projectSelect').value) throw staleError();
+    };
+    // Clear old project data before issuing any asynchronous requests.
+    requests = []; backlogItems = []; selectedRequestId = null;
+    clearBacklogForm();
+    $('selectedRequest').textContent = 'Select a saved stakeholder request to begin.';
+    $('refineRequest').disabled = true;
+    if (!projectId) { renderRequests(); renderBacklog(); return; }
+    $('savedRequests').innerHTML = '<p class="muted">Loading stakeholder requests…</p>';
+    $('requests').innerHTML = '<p class="muted">Loading stakeholder requests…</p>';
+    $('backlogItems').innerHTML = '<p class="muted">Loading project backlog…</p>';
+    const loadedRequests = await api('/rest/v1/stakeholder_requests?select=id,project_id,stakeholder,request_text,status,created_at&project_id=eq.'+encodeURIComponent(projectId)+'&order=created_at.desc');
+    assertSelection();
+    requests = loadedRequests || [];
+    renderRequests();
+    const loadedBacklog = await api('/rest/v1/backlog_items?select=id,project_id,stakeholder_request_id,title,item_type,priority,status,acceptance_given,acceptance_when,acceptance_then,completion_notes,created_at,updated_at&project_id=eq.'+encodeURIComponent(projectId)+'&order=updated_at.desc');
+    assertSelection();
+    backlogItems = loadedBacklog || [];
+    renderBacklog();
   }
-
   async function loadWorkspace() {
-    const version = contextVersion;
-    clearTell();
-    clearWorkspaceData();
-    showState();
+    const version=contextVersion, preferredProject=$('projectSelect').value;
+    clearTell(); clearWorkspaceData(); showState();
     try {
       const loadedProjects = await api('/rest/v1/projects?select=id,name,goal,created_at&order=created_at.desc');
       assertCurrent(version);
       projects = loadedProjects || [];
       renderProjects();
+      if (projects.some(p=>p.id===preferredProject)) $('projectSelect').value=preferredProject;
       await loadRequests(version);
       assertCurrent(version);
-      workspaceReady = true;
-      showState();
-    } catch (error) {
-      if (!isStale(error) && version === contextVersion) {
-        clearWorkspaceData();
-        showState();
-      }
-      throw error;
+      workspaceReady=true; showState();
     }
+    catch(error) { if (!isStale(error)&&version===contextVersion) { clearWorkspaceData(); showState(); } throw error; }
   }
 
-  function beginConnectionChange() {
-    editingConfig = true;
-    if (config) $('supabaseUrl').value = config.url;
-    $('supabaseKey').value = '';
-    showState();
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  $('connect').addEventListener('click', () => {
-    try {
-      const url = $('supabaseUrl').value.trim().replace(/\/$/, '');
-      const key = $('supabaseKey').value.trim();
-      if (!/^https:\/\/[a-zA-Z0-9.-]+$/.test(url)) throw new Error('Enter a valid Supabase HTTPS project URL.');
-      if (!key) throw new Error('Enter the public publishable/anon key.');
-      const changed = !config || config.url !== url || config.key !== key;
-      config = {url, key};
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
-      if (changed) {
-        invalidateContext();
-        saveSession(null);
-        clearAuthInputs();
-      }
-      editingConfig = false;
-      showState();
-      tell(changed ? 'Connection saved. Sign in to load records for this Supabase project.' : 'Connection settings saved.', 'success');
-    } catch (error) { tell(error.message, 'error'); }
-  });
-
-  $('forgetConfig').addEventListener('click', () => {
-    invalidateContext();
-    localStorage.removeItem(CONFIG_KEY);
-    localStorage.removeItem(SESSION_KEY);
-    config = null;
-    session = null;
-    editingConfig = false;
-    clearAuthInputs();
-    $('supabaseUrl').value = '';
-    $('supabaseKey').value = '';
-    showState();
-    tell('Saved connection and sign-in removed from this browser.', 'success');
-  });
-
-  $('changeConnection').addEventListener('click', beginConnectionChange);
-  $('changeConnectionWorkspace').addEventListener('click', beginConnectionChange);
-
-  $('signIn').addEventListener('click', async () => {
-    clearTell();
-    const email = $('email').value.trim();
-    const password = $('password').value;
-    invalidateContext();
-    saveSession(null);
-    showState();
-    try {
-      if (!email || !password) throw new Error('Enter your email and password.');
-      const version = contextVersion;
-      await authAction('/auth/v1/token?grant_type=password', {email, password}, version);
-      assertCurrent(version);
-      clearAuthInputs();
-      await loadWorkspace();
-      tell('Signed in. Your cloud projects are loaded.', 'success');
-    } catch (error) {
-      if (!isStale(error)) { clearAuthInputs(); showState(); tell(error.message, 'error'); }
-    }
-  });
-
-  $('signUp').addEventListener('click', async () => {
-    clearTell();
-    const email = $('email').value.trim();
-    const password = $('password').value;
-    invalidateContext();
-    saveSession(null);
-    showState();
-    try {
-      if (!email || password.length < 8) throw new Error('Enter a valid email and a password of at least 8 characters.');
-      const version = contextVersion;
-      const data = await authAction('/auth/v1/signup', {email, password}, version);
-      assertCurrent(version);
-      clearAuthInputs();
-      if (data?.access_token) {
-        await loadWorkspace();
-        tell('Account created and signed in.', 'success');
-      } else {
-        saveSession(null);
-        clearWorkspaceData();
-        showState();
-        tell('Account created. Check your email to confirm, then sign in.', 'success');
-      }
-    } catch (error) {
-      if (!isStale(error)) { clearAuthInputs(); showState(); tell(error.message, 'error'); }
-    }
-  });
-
-  $('signOut').addEventListener('click', () => {
-    const oldConfig = config;
-    const oldAccessToken = session?.access_token;
-    invalidateContext();
-    saveSession(null);
-    clearAuthInputs();
-    showState();
-    clearTell();
-    tell('Signed out.', 'success');
-    // Best-effort remote logout happens after local account data is already hidden.
-    if (oldConfig && oldAccessToken) {
-      fetch(oldConfig.url + '/auth/v1/logout', {
-        method:'POST',
-        headers:{apikey:oldConfig.key, Authorization:'Bearer ' + oldAccessToken}
-      }).catch(() => {});
-    }
-  });
-
-  $('reload').addEventListener('click', async () => {
-    try { await loadWorkspace(); tell('Projects and requests refreshed from Supabase.', 'success'); }
-    catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
-  });
-
-  $('projectForm').onsubmit = async event => {
-    event.preventDefault();
-    try {
-      const name = $('projectName').value.trim();
-      const goal = $('projectGoal').value.trim();
-      if (name.length < 2 || goal.length < 10) throw new Error('Enter a project name (at least 2 characters) and a meaningful goal (at least 10 characters).');
-      if (!session?.user?.id) throw new Error('Sign in again before creating a project.');
-      await api('/rest/v1/projects', {method:'POST', body:{owner_id:session.user.id, name, goal}, prefer:'return=minimal'});
-      $('projectForm').reset();
-      await loadWorkspace();
-      tell('Project saved to Supabase.', 'success');
-    } catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
-  };
-
-  $('requestForm').onsubmit = async event => {
-    event.preventDefault();
-    try {
-      const project_id = $('projectSelect').value;
-      const stakeholder = $('stakeholder').value.trim();
-      const request_text = $('requestText').value.trim();
-      if (!project_id) throw new Error('Select a project first.');
-      if (stakeholder.length < 2 || request_text.length < 3) throw new Error('Add the stakeholder and original request.');
-      // Omit status so the existing Version A database default applies.
-      await api('/rest/v1/stakeholder_requests', {method:'POST', body:{project_id, stakeholder, request_text}, prefer:'return=minimal'});
-      $('requestForm').reset();
-      await loadRequests();
-      tell('Original stakeholder request saved. The database supplied its default status.', 'success');
-    } catch (error) { if (!isStale(error)) tell(error.message, 'error'); }
-  };
-
-  $('projectSelect').addEventListener('change', () => loadRequests().catch(error => { if (!isStale(error)) tell(error.message, 'error'); }));
-  $('projects').addEventListener('click', event => {
-    const button = event.target.closest('.choose-project');
-    if (!button) return;
-    $('projectSelect').value = button.dataset.id;
-    loadRequests().then(() => $('requests').scrollIntoView({behavior:'smooth', block:'center'})).catch(error => { if (!isStale(error)) tell(error.message, 'error'); });
-  });
-
-  readConfig();
-  readSession();
-  if (session && !session.access_token) saveSession(null);
-  if (session) clearWorkspaceData();
-  showState();
-  if (config && session) loadWorkspace().catch(error => { if (!isStale(error)) tell(error.message, 'error'); });
+  function beginConnectionChange() { editingConfig=true; if(config)$('supabaseUrl').value=config.url; $('supabaseKey').value=''; showState(); window.scrollTo({top:0,behavior:'smooth'}); }
+  $('connect').addEventListener('click',()=>{try{const url=$('supabaseUrl').value.trim().replace(/\/$/,'');const key=$('supabaseKey').value.trim();if(!/^https:\/\/[a-zA-Z0-9.-]+$/.test(url))throw new Error('Enter a valid Supabase HTTPS project URL.');if(!key)throw new Error('Enter the public publishable/anon key.');const changed=!config||config.url!==url||config.key!==key;config={url,key};localStorage.setItem(CONFIG_KEY,JSON.stringify(config));if(changed){invalidateContext();saveSession(null);clearAuthInputs()}editingConfig=false;showState();tell(changed?'Connection saved. Sign in to load records for this Supabase project.':'Connection settings saved.','success')}catch(error){tell(error.message,'error')}});
+  $('forgetConfig').addEventListener('click',()=>{invalidateContext();localStorage.removeItem(CONFIG_KEY);localStorage.removeItem(SESSION_KEY);config=null;session=null;editingConfig=false;clearAuthInputs();$('supabaseUrl').value='';$('supabaseKey').value='';showState();tell('Saved connection and sign-in removed from this browser.','success')});
+  $('changeConnection').addEventListener('click',beginConnectionChange); $('changeConnectionWorkspace').addEventListener('click',beginConnectionChange);
+  $('signIn').addEventListener('click',async()=>{clearTell();const email=$('email').value.trim(),password=$('password').value;invalidateContext();saveSession(null);showState();try{if(!email||!password)throw new Error('Enter your email and password.');const version=contextVersion;await authAction('/auth/v1/token?grant_type=password',{email,password},version);assertCurrent(version);clearAuthInputs();await loadWorkspace();tell('Signed in. Your cloud projects are loaded.','success')}catch(error){if(!isStale(error)){clearAuthInputs();showState();tell(error.message,'error')}}});
+  $('signUp').addEventListener('click',async()=>{clearTell();const email=$('email').value.trim(),password=$('password').value;invalidateContext();saveSession(null);showState();try{if(!email||password.length<8)throw new Error('Enter a valid email and a password of at least 8 characters.');const version=contextVersion,data=await authAction('/auth/v1/signup',{email,password},version);assertCurrent(version);clearAuthInputs();if(data?.access_token){await loadWorkspace();tell('Account created and signed in.','success')}else{saveSession(null);clearWorkspaceData();showState();tell('Account created. Check your email to confirm, then sign in.','success')}}catch(error){if(!isStale(error)){clearAuthInputs();showState();tell(error.message,'error')}}});
+  $('signOut').addEventListener('click',()=>{const oldConfig=config,oldAccessToken=session?.access_token;invalidateContext();saveSession(null);clearAuthInputs();showState();clearTell();tell('Signed out.','success');if(oldConfig&&oldAccessToken)fetch(oldConfig.url+'/auth/v1/logout',{method:'POST',headers:{apikey:oldConfig.key,Authorization:'Bearer '+oldAccessToken}}).catch(()=>{})});
+  $('reload').addEventListener('click',async()=>{try{await loadWorkspace();tell('Projects and requests refreshed from Supabase.','success')}catch(error){if(!isStale(error))tell(error.message,'error')}});
+  $('projectForm').onsubmit=async event=>{event.preventDefault();try{const name=$('projectName').value.trim(),goal=$('projectGoal').value.trim();if(name.length<2||goal.length<10)throw new Error('Enter a project name (at least 2 characters) and a meaningful goal (at least 10 characters).');if(!session?.user?.id)throw new Error('Sign in again before creating a project.');await api('/rest/v1/projects',{method:'POST',body:{owner_id:session.user.id,name,goal},prefer:'return=minimal'});$('projectForm').reset();await loadWorkspace();tell('Project saved to Supabase.','success')}catch(error){if(!isStale(error))tell(error.message,'error')}};
+  $('requestForm').onsubmit=async event=>{event.preventDefault();try{const project_id=$('projectSelect').value,stakeholder=$('stakeholder').value.trim(),request_text=$('requestText').value.trim();if(!project_id)throw new Error('Select a project first.');if(stakeholder.length<2||request_text.length<3)throw new Error('Add the stakeholder and original request.');await api('/rest/v1/stakeholder_requests',{method:'POST',body:{project_id,stakeholder,request_text},prefer:'return=minimal'});$('stakeholder').value='';$('requestText').value='';await loadRequests();tell('Original stakeholder request saved. The database supplied its default status.','success')}catch(error){if(!isStale(error))tell(error.message,'error')}};
+  $('projectSelect').addEventListener('change',()=>{selectedRequestId=null;clearBacklogForm();loadRequests().catch(error=>{if(!isStale(error))tell(error.message,'error')})});
+  $('savedRequests').addEventListener('click',event=>{const btn=event.target.closest('[data-request-id]');if(!btn)return;selectedRequestId=btn.dataset.requestId;renderRequests();const request=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=request?`${request.stakeholder}: ${request.request_text}`:'Select a saved stakeholder request to begin.';$('refineRequest').disabled=!request;clearBacklogForm()});
+  $('refineRequest').addEventListener('click',()=>{if(!requests.some(r=>r.id===selectedRequestId))return;fillBacklogForm()});
+  $('itemStatus').addEventListener('change',updateSaveLabel);
+  $('itemType').addEventListener('change',()=>{$('completionHint').textContent=['Epic','Technical Task','Spike'].includes($('itemType').value)?'(recommended for Ready)':'(optional)'});
+  $('cancelBacklogEdit').addEventListener('click',clearBacklogForm);
+  $('backlogItems').addEventListener('click',event=>{const btn=event.target.closest('.edit-backlog');if(!btn)return;const item=backlogItems.find(x=>x.id===btn.dataset.itemId);if(!item)return;selectedRequestId=item.stakeholder_request_id;renderRequests();const source=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=source?`${source.stakeholder}: ${source.request_text}`:'Source request is unavailable.';$('refineRequest').disabled=true;fillBacklogForm(item)});
+  $('backlogForm').onsubmit=async event=>{event.preventDefault();if(submitting)return;const value=readBacklogForm(),errors=validationErrors(value);if(!requests.some(r=>r.id===selectedRequestId&&r.project_id===$('projectSelect').value)){errors.push('Select an original request from the active project.')}if(errors.length){$('formErrors').textContent=errors.join(' ');$('formErrors').classList.remove('hidden');return}const projectId=$('projectSelect').value,existingId=$('backlogItemId').value,version=contextVersion,loadVersion=projectLoadVersion;submitting=true;$('saveBacklogItem').disabled=true;$('cancelBacklogEdit').disabled=true;$('formErrors').classList.add('hidden');try{const payload={project_id:projectId,stakeholder_request_id:selectedRequestId,...value};if(existingId)await api('/rest/v1/backlog_items?id=eq.'+encodeURIComponent(existingId)+'&project_id=eq.'+encodeURIComponent(projectId),{method:'PATCH',body:{title:value.title,item_type:value.item_type,priority:value.priority,status:value.status,acceptance_given:value.acceptance_given,acceptance_when:value.acceptance_when,acceptance_then:value.acceptance_then,completion_notes:value.completion_notes},prefer:'return=minimal'});else await api('/rest/v1/backlog_items',{method:'POST',body:payload,prefer:'return=minimal'});assertCurrent(version);if(projectId!==$('projectSelect').value||loadVersion!==projectLoadVersion)throw staleError();clearBacklogForm();await loadRequests(version);tell(existingId?'Backlog item updated.':'Backlog item saved and linked to the original request.','success')}catch(error){if(!isStale(error)){ $('formErrors').textContent=error.message;$('formErrors').classList.remove('hidden');tell(error.message,'error')}}finally{if(version===contextVersion){submitting=false;$('saveBacklogItem').disabled=false;$('cancelBacklogEdit').disabled=false;updateSaveLabel()}}};
+  readConfig();readSession();if(session&&!session.access_token)saveSession(null);if(session)clearWorkspaceData();showState();if(config&&session)loadWorkspace().catch(error=>{if(!isStale(error))tell(error.message,'error')});
 })();
 </script>
 </body>
