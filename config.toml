@@ -1,0 +1,5 @@
+[functions.analyze-backlog]
+# This function validates the user JWT explicitly via Supabase Auth and verifies
+# project/request ownership with RLS-protected REST reads. The gateway's legacy
+# JWT verification is disabled for compatibility with publishable API keys.
+verify_jwt = false
