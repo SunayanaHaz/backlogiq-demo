@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#151025">
   <title>BacklogIQ — Cloud Projects</title>
   <style>
-    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#241a36;background:#f8f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e4ef;padding:16px max(20px,calc((100vw - 1060px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:850;letter-spacing:.02em;color:#35265b}.brand span{color:#7153c2}a{color:#5e43b6;text-decoration:none;font-weight:700;font-size:13px}a:hover{text-decoration:underline}main{max-width:1120px;margin:32px auto;padding:0 20px 50px}h1{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin:0 0 12px}.muted{color:#655b73;font-size:14px;line-height:1.55}.panel{background:#fff;border:1px solid #e8e4ef;border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 5px 22px #241a3608}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750}.field input,.field textarea,.field select{font:inherit;width:100%;border:1px solid #d9d4e2;border-radius:8px;padding:10px;background:#fff;color:#241a36}.field textarea{min-height:84px;resize:vertical}button{border:0;border-radius:8px;padding:10px 14px;background:#5e43b6;color:white;font:inherit;font-weight:700;cursor:pointer}button.secondary{color:#514178;background:#f1eef7;border:1px solid #e3dcef}button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.list{display:grid;gap:9px}.entry{border:1px solid #ece8f2;background:#fcfbfe;border-radius:9px;padding:12px}.entry strong{display:block;font-size:14px}.entry p{margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5}.entry small{color:#655b73}.entry.selected{border-color:#765dc4;background:#f7f4ff}.notice{border-radius:8px;background:#f1eef7;padding:11px 13px;font-size:13px;line-height:1.5;margin:12px 0}.notice.error{background:#fff0f1;color:#812b38}.notice.success{background:#eaf7f1;color:#17634f}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.session{font-size:12px;color:#655b73;overflow-wrap:anywhere}.warning{font-size:12px;color:#665b73}.request-card,.backlog-card{width:100%;text-align:left;color:inherit;background:#fcfbfe;border:1px solid #ece8f2;font-weight:400}.request-card:hover,.backlog-card:hover{border-color:#aa9bd4}.request-card[aria-pressed=true]{border-color:#765dc4;background:#f7f4ff}.status-pill{display:inline-block;border-radius:99px;background:#eeeaf7;color:#514178;padding:3px 8px;font-size:11px;font-weight:750}.actions{display:flex;justify-content:space-between;gap:10px;align-items:center}.criteria-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.panel-subtitle{margin:0 0 8px;color:#53476a;font-size:13px;font-weight:750}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #1a7cc7;outline-offset:2px}@media(max-width:760px){.grid{grid-template-columns:1fr}.criteria-grid{grid-template-columns:1fr}main{margin-top:22px}header{padding:15px 20px}.toprow{align-items:flex-start;flex-direction:column}}
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#241a36;background:#f8f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e4ef;padding:16px max(20px,calc((100vw - 1060px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:850;letter-spacing:.02em;color:#35265b}.brand span{color:#7153c2}a{color:#5e43b6;text-decoration:none;font-weight:700;font-size:13px}a:hover{text-decoration:underline}main{max-width:1120px;margin:32px auto;padding:0 20px 50px}h1{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin:0 0 12px}.muted{color:#655b73;font-size:14px;line-height:1.55}.panel{background:#fff;border:1px solid #e8e4ef;border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 5px 22px #241a3608}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750}.field input,.field textarea,.field select{font:inherit;width:100%;border:1px solid #d9d4e2;border-radius:8px;padding:10px;background:#fff;color:#241a36}.field textarea{min-height:84px;resize:vertical}button{border:0;border-radius:8px;padding:10px 14px;background:#5e43b6;color:white;font:inherit;font-weight:700;cursor:pointer}button.secondary{color:#514178;background:#f1eef7;border:1px solid #e3dcef}button:disabled{opacity:.55;cursor:not-allowed}.ai-summary{white-space:pre-wrap;line-height:1.6}.ai-summary dt{font-size:12px;font-weight:800;margin-top:12px}.ai-summary dd{font-size:13px;margin:3px 0 8px;overflow-wrap:anywhere}.ai-inline{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.ai-note{background:#eef5ff;color:#214a7a}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.list{display:grid;gap:9px}.entry{border:1px solid #ece8f2;background:#fcfbfe;border-radius:9px;padding:12px}.entry strong{display:block;font-size:14px}.entry p{margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5}.entry small{color:#655b73}.entry.selected{border-color:#765dc4;background:#f7f4ff}.notice{border-radius:8px;background:#f1eef7;padding:11px 13px;font-size:13px;line-height:1.5;margin:12px 0}.notice.error{background:#fff0f1;color:#812b38}.notice.success{background:#eaf7f1;color:#17634f}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.session{font-size:12px;color:#655b73;overflow-wrap:anywhere}.warning{font-size:12px;color:#665b73}.request-card,.backlog-card{width:100%;text-align:left;color:inherit;background:#fcfbfe;border:1px solid #ece8f2;font-weight:400}.request-card:hover,.backlog-card:hover{border-color:#aa9bd4}.request-card[aria-pressed=true]{border-color:#765dc4;background:#f7f4ff}.status-pill{display:inline-block;border-radius:99px;background:#eeeaf7;color:#514178;padding:3px 8px;font-size:11px;font-weight:750}.actions{display:flex;justify-content:space-between;gap:10px;align-items:center}.criteria-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.panel-subtitle{margin:0 0 8px;color:#53476a;font-size:13px;font-weight:750}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #1a7cc7;outline-offset:2px}@media(max-width:760px){.grid{grid-template-columns:1fr}.criteria-grid{grid-template-columns:1fr}main{margin-top:22px}header{padding:15px 20px}.toprow{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -46,7 +46,13 @@
         <p class="muted">Choose an original request, then create or edit a linked backlog item. The source request is never changed.</p>
         <div class="grid">
           <div><h3 class="panel-subtitle">1. Choose a stakeholder request</h3><div id="savedRequests" class="list"><p class="muted">Select a project to load requests.</p></div></div>
-          <div><h3 class="panel-subtitle">2. Refine into backlog item</h3><div id="selectedRequest" class="notice">Select a saved stakeholder request to begin.</div><button id="refineRequest" type="button" disabled>Refine into backlog item</button>
+          <div><h3 class="panel-subtitle">2. Refine into backlog item</h3><div id="selectedRequest" class="notice">Select a saved stakeholder request to begin.</div>
+            <div class="ai-inline"><button id="refineRequest" type="button" disabled>Refine into backlog item</button><button id="analyzeWithAI" class="secondary" type="button" disabled>✧ Analyze with Gemini</button></div>
+            <p class="warning">Gemini analysis sends the selected fictional request and project goal to Google. Do not use personal or confidential information. AI may be incorrect; you must review and approve every suggestion.</p>
+            <div id="aiPreview" class="notice ai-note hidden" aria-live="polite">
+              <strong>AI suggestion — not saved</strong><div id="aiSummary" class="ai-summary"></div>
+              <div class="row"><button id="applyAiSuggestion" type="button">Use suggestion in editable Draft</button><button id="discardAiSuggestion" type="button" class="secondary">Discard</button></div>
+            </div>
             <form id="backlogForm" class="hidden">
               <input id="backlogItemId" type="hidden">
               <div class="field"><label for="itemTitle">Item title <span aria-hidden="true">*</span></label><input id="itemTitle" maxlength="200" required placeholder="A concise description of the work"></div>
@@ -87,7 +93,7 @@
   let projects = [], requests = [], backlogItems = [], selectedRequestId = null, contextVersion = 0;
   // A project-selection change must invalidate older request/backlog fetches without
   // invalidating the user's authentication session.
-  let projectLoadVersion = 0, submitting = false;
+  let projectLoadVersion = 0, submitting = false, aiPending = false, aiSuggestion = null, aiRequestEpoch = 0;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function tell(text, kind = '') { const el = $('message'); el.textContent = text; el.className = 'notice' + (kind ? ' ' + kind : ''); el.classList.remove('hidden'); }
   function clearTell() { $('message').classList.add('hidden'); }
@@ -95,6 +101,34 @@
   const isStale = e => e?.code === 'STALE_CONTEXT';
   function assertCurrent(version) { if (version !== contextVersion) throw staleError(); }
 
+  function clearAiPreview() {
+    aiSuggestion = null;
+    $('aiPreview').classList.add('hidden');
+    $('aiSummary').replaceChildren();
+    $('analyzeWithAI').textContent = '✧ Analyze with Gemini';
+    $('analyzeWithAI').disabled = aiPending || !requests.some(r => r.id === selectedRequestId);
+  }
+  function addAiDetail(container, label, value) {
+    if (!value) return;
+    const dt = document.createElement('dt'); dt.textContent = label;
+    const dd = document.createElement('dd'); dd.textContent = value;
+    container.append(dt, dd);
+  }
+  function previewAiSuggestion(suggestion) {
+    const container = $('aiSummary');
+    container.replaceChildren();
+    const dl = document.createElement('dl');
+    addAiDetail(dl, 'Suggested title', suggestion.title);
+    addAiDetail(dl, 'Type / priority', suggestion.item_type + ' / ' + suggestion.priority);
+    addAiDetail(dl, 'Given', suggestion.acceptance_given);
+    addAiDetail(dl, 'When', suggestion.acceptance_when);
+    addAiDetail(dl, 'Then', suggestion.acceptance_then);
+    addAiDetail(dl, 'Completion notes', suggestion.completion_notes);
+    addAiDetail(dl, 'AI rationale (verify independently)', suggestion.rationale);
+    addAiDetail(dl, 'Questions to clarify', (suggestion.clarification_questions || []).join('\n'));
+    container.append(dl);
+    $('aiPreview').classList.remove('hidden');
+  }
   function clearBacklogForm() {
     $('backlogForm').reset();
     $('backlogItemId').value = '';
@@ -108,6 +142,7 @@
   function clearWorkspaceData() {
     // A pending fetch from a previous project/account must never repopulate the UI.
     projectLoadVersion += 1;
+    clearAiPreview();
     workspaceReady = false; projects = []; requests = []; backlogItems = []; selectedRequestId = null;
     $('projects').innerHTML = '<p class="muted">Sign in to load saved projects.</p>';
     $('requests').innerHTML = '<p class="muted">Select a project to view requests.</p>';
@@ -116,10 +151,11 @@
     $('projectSelect').innerHTML = '<option value="">Create or select a project first</option>';
     $('selectedRequest').textContent = 'Select a saved stakeholder request to begin.';
     $('refineRequest').disabled = true;
+    $('analyzeWithAI').disabled = true;
     $('signedInAs').textContent = '';
     $('projectForm').reset(); $('requestForm').reset(); clearBacklogForm();
   }
-  function invalidateContext() { contextVersion += 1; submitting=false; clearWorkspaceData(); return contextVersion; }
+  function invalidateContext() { contextVersion += 1; submitting=false; aiPending=false; aiRequestEpoch+=1; clearWorkspaceData(); return contextVersion; }
   function clearAuthInputs() { $('email').value = ''; $('password').value = ''; }
   function showState() {
     $('setup').classList.toggle('hidden', !!config && !editingConfig);
@@ -198,9 +234,10 @@
     };
     // Clear old project data before issuing any asynchronous requests.
     requests = []; backlogItems = []; selectedRequestId = null;
-    clearBacklogForm();
+    clearBacklogForm(); clearAiPreview();
     $('selectedRequest').textContent = 'Select a saved stakeholder request to begin.';
     $('refineRequest').disabled = true;
+    $('analyzeWithAI').disabled = true;
     if (!projectId) { renderRequests(); renderBacklog(); return; }
     $('savedRequests').innerHTML = '<p class="muted">Loading stakeholder requests…</p>';
     $('requests').innerHTML = '<p class="muted">Loading stakeholder requests…</p>';
@@ -241,12 +278,74 @@
   $('projectForm').onsubmit=async event=>{event.preventDefault();try{const name=$('projectName').value.trim(),goal=$('projectGoal').value.trim();if(name.length<2||goal.length<10)throw new Error('Enter a project name (at least 2 characters) and a meaningful goal (at least 10 characters).');if(!session?.user?.id)throw new Error('Sign in again before creating a project.');await api('/rest/v1/projects',{method:'POST',body:{owner_id:session.user.id,name,goal},prefer:'return=minimal'});$('projectForm').reset();await loadWorkspace();tell('Project saved to Supabase.','success')}catch(error){if(!isStale(error))tell(error.message,'error')}};
   $('requestForm').onsubmit=async event=>{event.preventDefault();try{const project_id=$('projectSelect').value,stakeholder=$('stakeholder').value.trim(),request_text=$('requestText').value.trim();if(!project_id)throw new Error('Select a project first.');if(stakeholder.length<2||request_text.length<3)throw new Error('Add the stakeholder and original request.');await api('/rest/v1/stakeholder_requests',{method:'POST',body:{project_id,stakeholder,request_text},prefer:'return=minimal'});$('stakeholder').value='';$('requestText').value='';await loadRequests();tell('Original stakeholder request saved. The database supplied its default status.','success')}catch(error){if(!isStale(error))tell(error.message,'error')}};
   $('projectSelect').addEventListener('change',()=>{selectedRequestId=null;clearBacklogForm();loadRequests().catch(error=>{if(!isStale(error))tell(error.message,'error')})});
-  $('savedRequests').addEventListener('click',event=>{const btn=event.target.closest('[data-request-id]');if(!btn)return;selectedRequestId=btn.dataset.requestId;renderRequests();const request=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=request?`${request.stakeholder}: ${request.request_text}`:'Select a saved stakeholder request to begin.';$('refineRequest').disabled=!request;clearBacklogForm()});
+  $('savedRequests').addEventListener('click',event=>{const btn=event.target.closest('[data-request-id]');if(!btn)return;selectedRequestId=btn.dataset.requestId;renderRequests();const request=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=request?`${request.stakeholder}: ${request.request_text}`:'Select a saved stakeholder request to begin.';$('refineRequest').disabled=!request;clearBacklogForm();clearAiPreview()});
   $('refineRequest').addEventListener('click',()=>{if(!requests.some(r=>r.id===selectedRequestId))return;fillBacklogForm()});
+  $('analyzeWithAI').addEventListener('click', async () => {
+    if (aiPending || !config || !session?.access_token) return;
+    const projectId = $('projectSelect').value;
+    const requestId = selectedRequestId;
+    if (!requests.some(r => r.id === requestId && r.project_id === projectId)) return;
+    // Explicit confirmation before data is sent to a third-party AI provider.
+    if (!window.confirm('Send this fictional stakeholder request and project goal to Google Gemini for analysis?')) return;
+    clearAiPreview(); clearTell(); aiPending = true; const aiEpoch = ++aiRequestEpoch;
+    $('analyzeWithAI').disabled = true;
+    $('analyzeWithAI').textContent = 'Analyzing…';
+    const version = contextVersion, loadVersion = projectLoadVersion;
+    try {
+      await refreshIfNeeded(version); assertCurrent(version);
+      const response = await fetch(config.url + '/functions/v1/analyze-backlog', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'apikey': config.key,
+          'authorization': 'Bearer ' + session.access_token,
+        },
+        body: JSON.stringify({ project_id: projectId, stakeholder_request_id: requestId }),
+      });
+      const body = await response.json().catch(() => ({}));
+      assertCurrent(version);
+      if (loadVersion !== projectLoadVersion || $('projectSelect').value !== projectId || selectedRequestId !== requestId) throw staleError();
+      if (!response.ok) throw new Error(body.error || 'Gemini analysis failed (' + response.status + ').');
+      const suggestion = body.suggestion;
+      if (!suggestion || !TYPES.includes(suggestion.item_type) || !PRIORITIES.includes(suggestion.priority) || !suggestion.title) throw new Error('The AI result was incomplete. Please retry.');
+      aiSuggestion = suggestion;
+      previewAiSuggestion(suggestion);
+      tell('Gemini suggested a Draft. Review it before applying or saving.', 'success');
+    } catch (error) {
+      if (!isStale(error) && version === contextVersion) tell(error.message, 'error');
+    } finally {
+      if (aiEpoch === aiRequestEpoch) {
+        aiPending = false;
+        if (version === contextVersion) {
+        $('analyzeWithAI').textContent = '✧ Analyze with Gemini';
+        $('analyzeWithAI').disabled = !requests.some(r => r.id === selectedRequestId);
+        }
+      }
+    }
+  });
+  $('discardAiSuggestion').addEventListener('click', clearAiPreview);
+  $('applyAiSuggestion').addEventListener('click', () => {
+    const x = aiSuggestion;
+    if (!x || !requests.some(r => r.id === selectedRequestId && r.project_id === $('projectSelect').value)) return;
+    // Never overwrite an existing backlog item or automatically save AI output.
+    fillBacklogForm();
+    $('itemTitle').value = x.title;
+    $('itemType').value = x.item_type;
+    $('itemPriority').value = x.priority;
+    $('itemStatus').value = 'Draft';
+    $('criterionGiven').value = x.acceptance_given || '';
+    $('criterionWhen').value = x.acceptance_when || '';
+    $('criterionThen').value = x.acceptance_then || '';
+    $('completionNotes').value = x.completion_notes || '';
+    updateSaveLabel();
+    clearAiPreview();
+    tell('AI suggestion copied into an editable Draft. Review every field, then click Save as Draft when ready.', 'success');
+  });
+
   $('itemStatus').addEventListener('change',updateSaveLabel);
   $('itemType').addEventListener('change',()=>{$('completionHint').textContent=['Epic','Technical Task','Spike'].includes($('itemType').value)?'(recommended for Ready)':'(optional)'});
   $('cancelBacklogEdit').addEventListener('click',clearBacklogForm);
-  $('backlogItems').addEventListener('click',event=>{const btn=event.target.closest('.edit-backlog');if(!btn)return;const item=backlogItems.find(x=>x.id===btn.dataset.itemId);if(!item)return;selectedRequestId=item.stakeholder_request_id;renderRequests();const source=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=source?`${source.stakeholder}: ${source.request_text}`:'Source request is unavailable.';$('refineRequest').disabled=true;fillBacklogForm(item)});
+  $('backlogItems').addEventListener('click',event=>{const btn=event.target.closest('.edit-backlog');if(!btn)return;const item=backlogItems.find(x=>x.id===btn.dataset.itemId);if(!item)return;selectedRequestId=item.stakeholder_request_id;renderRequests();const source=requests.find(r=>r.id===selectedRequestId);$('selectedRequest').textContent=source?`${source.stakeholder}: ${source.request_text}`:'Source request is unavailable.';$('refineRequest').disabled=true;clearAiPreview();fillBacklogForm(item)});
   $('backlogForm').onsubmit=async event=>{event.preventDefault();if(submitting)return;const value=readBacklogForm(),errors=validationErrors(value);if(!requests.some(r=>r.id===selectedRequestId&&r.project_id===$('projectSelect').value)){errors.push('Select an original request from the active project.')}if(errors.length){$('formErrors').textContent=errors.join(' ');$('formErrors').classList.remove('hidden');return}const projectId=$('projectSelect').value,existingId=$('backlogItemId').value,version=contextVersion,loadVersion=projectLoadVersion;submitting=true;$('saveBacklogItem').disabled=true;$('cancelBacklogEdit').disabled=true;$('formErrors').classList.add('hidden');try{const payload={project_id:projectId,stakeholder_request_id:selectedRequestId,...value};if(existingId)await api('/rest/v1/backlog_items?id=eq.'+encodeURIComponent(existingId)+'&project_id=eq.'+encodeURIComponent(projectId),{method:'PATCH',body:{title:value.title,item_type:value.item_type,priority:value.priority,status:value.status,acceptance_given:value.acceptance_given,acceptance_when:value.acceptance_when,acceptance_then:value.acceptance_then,completion_notes:value.completion_notes},prefer:'return=minimal'});else await api('/rest/v1/backlog_items',{method:'POST',body:payload,prefer:'return=minimal'});assertCurrent(version);if(projectId!==$('projectSelect').value||loadVersion!==projectLoadVersion)throw staleError();clearBacklogForm();await loadRequests(version);tell(existingId?'Backlog item updated.':'Backlog item saved and linked to the original request.','success')}catch(error){if(!isStale(error)){ $('formErrors').textContent=error.message;$('formErrors').classList.remove('hidden');tell(error.message,'error')}}finally{if(version===contextVersion){submitting=false;$('saveBacklogItem').disabled=false;$('cancelBacklogEdit').disabled=false;updateSaveLabel()}}};
   readConfig();readSession();if(session&&!session.access_token)saveSession(null);if(session)clearWorkspaceData();showState();if(config&&session)loadWorkspace().catch(error=>{if(!isStale(error))tell(error.message,'error')});
 })();
